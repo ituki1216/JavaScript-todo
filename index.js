@@ -18,10 +18,11 @@ function add() {
         li.classList.add("list-group-item"); // liタグにデザインを適用したいのでclassリストにlist-group-itemをhtml側に追加する
         ul.appendChild(li);
         input.value = ""; // 入力フォームを送信する毎に空にする
-        saveDate
+        saveData();
     }
 }
 
-function saveDate () {
-    
+function saveData () {
+    const lists = document.querySelectorAll("li"); // documentからデータを取得するためliをとってくる
+    console.log(lists);
 }
