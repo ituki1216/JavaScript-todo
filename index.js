@@ -12,7 +12,7 @@ if (todos) { // もしtodosが空ではなかったら
     });
 }
 
-form.addEventListener("submit", function (event) {
+form.addEventListener("submit", function (event) { 
     event.preventDefault();
     add();
 });
