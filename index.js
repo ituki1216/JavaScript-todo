@@ -22,7 +22,11 @@ function add() {
     }
 }
 
-function saveData () {
+function saveData() {
     const lists = document.querySelectorAll("li"); // documentからデータを取得するためliをとってくる
-    console.log(lists);
+    let todos = [];
+    lists.forEach(list => {
+        todos.push(list.innerText)
+        console.log(todos)
+    })
 }
