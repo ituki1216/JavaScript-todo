@@ -7,10 +7,10 @@ const ul = document.getElementById("ul") // htmlからulタグを取得する
 
 const todos = JSON.parse(localStorage.getItem("todos")); // ""は文字列で扱いにくいのでJSON.parsを使用する
 
-if (todos) {
+if (todos) { // もしtodosが空ではなかったら
     todos.forEach(todo => {
         add(todo);
-    })
+    });
 }
 
 form.addEventListener("submit", function (event) {
@@ -29,6 +29,14 @@ function add(todo) {
         const li = document.createElement("li"); // liタグを作るのでdocument.createElementでliを指定する
         li.innerText = todoText; // ユーザーが入力した値を取得したいのでuserが入力するinput valueとする
         li.classList.add("list-group-item"); // liタグにデザインを適用したいのでclassリストにlist-group-itemをhtml側に追加する
+
+        li.addEventListener("contextmenu", function
+            (event) {
+                event.preventDefault(); //右クリックのイベントをブロック
+                li.remove();
+                saveData();
+            });
+
         ul.appendChild(li);
         input.value = ""; // 入力フォームを送信する毎に空にする
         saveData();
