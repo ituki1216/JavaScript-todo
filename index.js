@@ -5,7 +5,7 @@ const form = document.getElementById("form");
 const input = document.getElementById("input");
 const ul = document.getElementById("ul"); // htmlからulタグを取得する
 
-const todos = JSON.parse(localStorage.getItem("todos")); // ""は文字列で扱いにくいのでJSON.parsを使用する
+const todos = JSON.parse(localStorage.getItem("todos")); // ""は文字列で扱いにくいのでJSON.parsを使用するaaaa
 if (todos) { // もしtodosが空ではなかったら
     todos.forEach(todo => {
         add(todo);
