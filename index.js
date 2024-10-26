@@ -3,10 +3,9 @@
 // htmlのfromタグ取得する
 const form = document.getElementById("form");
 const input = document.getElementById("input");
-const ul = document.getElementById("ul") // htmlからulタグを取得する
+const ul = document.getElementById("ul"); // htmlからulタグを取得する
 
 const todos = JSON.parse(localStorage.getItem("todos")); // ""は文字列で扱いにくいのでJSON.parsを使用する
-
 if (todos) { // もしtodosが空ではなかったら
     todos.forEach(todo => {
         add(todo);
@@ -22,13 +21,18 @@ function add(todo) {
     let todoText = input.value;
 
     if (todo) {
-        todoText = todo;
+        todoText = todo.text;
     }
 
     if (todoText) { // もしフォームにtodoTextに入力された文字が0文字より多きならしたのconstを回す Trueを返す
         const li = document.createElement("li"); // liタグを作るのでdocument.createElementでliを指定する
+
         li.innerText = todoText; // ユーザーが入力した値を取得したいのでuserが入力するinput valueとする
         li.classList.add("list-group-item"); // liタグにデザインを適用したいのでclassリストにlist-group-itemをhtml側に追加する
+
+        if (todo && todo.completed) {
+            li.classList.add("text-decoration-line-through");
+        }
 
         li.addEventListener("contextmenu", function
             (event) {
@@ -38,8 +42,7 @@ function add(todo) {
             });
 
         li.addEventListener("click", function() {
-            li.classList.toggle
-            ("text-decoration-line-through");
+            li.classList.toggle("text-decoration-line-through");
         });
 
         ul.appendChild(li);
@@ -49,10 +52,15 @@ function add(todo) {
 }
 
 function saveData() {
-    const lists = document.querySelectorAll("li"); // documentからデータを取得するためliをとってくる
-    let todos = [];
-    lists.forEach(list => {
-        todos.push(list.innerText)
-    })
-    localStorage.setItem("todos", JSON.stringify(todos)); // json形式に変換したほうが楽
-}
+    const lists = document.querySelectorAll("li");
+    const todos = [];
+  
+    lists.forEach((li) => {
+      todos.push({
+        text: li.innerText,
+        completed: li.classList.contains("text-decoration-line-through"),
+      });
+    });
+  
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }
