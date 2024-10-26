@@ -37,6 +37,11 @@ function add(todo) {
                 saveData();
             });
 
+        li.addEventListener("click", function() {
+            li.classList.toggle
+            ("text-decoration-line-through");
+        });
+
         ul.appendChild(li);
         input.value = ""; // 入力フォームを送信する毎に空にする
         saveData();
