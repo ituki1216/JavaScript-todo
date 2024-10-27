@@ -11,3 +11,7 @@ def add():
     data = request.get_json()  # フロントからの送信情報をJSON形式で取得する
     result = {'message': 'データを処理しました！'}
     return jsonify(result)
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
